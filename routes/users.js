@@ -37,13 +37,15 @@ router.post('/',function (req,res) {
         address: req.body.address,
         age: parseInt(req.body.age)
     };
-
-    con.query('INSERT INTO users SET ?',data,function (err,re) {
-        if(err)
+    console.log(data);
+    var query = con.query('INSERT INTO users SET ?',data,function (err,re) {
+        if(err) {
+            console.log(query.sql);
             console.log(err.message);
+        }
         else
         {
-            console.log(re);
+            //console.log(re);
             res.render('user',data);
         }
     });
@@ -64,8 +66,8 @@ router.post('/update',function (req,res) {
         height: req.body.height,
         waist: req.body.waist,
         chest: req.body.chest
-    }
-   con.query('UPDATE users SET ? WHERE ?',[data,{phone: req.body.phone}],function (err,resp) {
+    };
+   con.query('UPDATE users SET ? WHERE ?',[data,{phone: req.body.phone}],function (err,result) {
       if(err){
           console.log(err);
       }

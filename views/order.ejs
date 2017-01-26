@@ -4,10 +4,23 @@
 </head>
 <body>
 
-<form action="/order" method="post">
-    <br>start time:<input type="text" name="startdate">
-    <br>end time<input type="text" name="enddate">
-    <br>total cost:<input type="text" name="totalcost">
+<form action="/order/singleorder" method="post">
+    orderid: <input type="text" name="orderid" value="<%= id %>">
+    <br>
+    itemname: <input type="text" name="itemname" >
+    <br>
+    details: <input type="text" name="detail" >
+    <br>
+    cost: <input type="text" name="cost" >
+    <br>
+    quantity: <select name="quantity">
+        <option  value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <br>
     <input type="submit">
 </form>
 </body>

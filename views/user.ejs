@@ -19,7 +19,7 @@
                 phone: phone,
                 height: height,
                 waist: waist,
-                chest: chest,
+                chest: chest
             }
             JSON.stringify(data);
 
@@ -38,19 +38,15 @@
     <script>
         function orderform(phone) {
 
-            var data = {phone: phone};
+
 
             window.location.href='order?phone='+phone;
         }
     </script>
     <script>
-        function orderfindfn() {
-            var data = {phone: phone};
-            JSON.stringify(data);
-            $.ajax({
-                type: "GET",
-                url: '/order'
-            });
+        function orderfindfn(phone) {
+
+            window.location.href = 'order/orders?phone='+phone;
         }
     </script>
 </head>
