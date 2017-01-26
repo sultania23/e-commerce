@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USER FOUND PAGE</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        function resform() {
+            var name = document.getElementById("editform").elements[0].value;
+            var phone = document.getElementById("editform").elements[1].value;
+            var address = document.getElementById("editform").elements[2].value;
+            var age = document.getElementById("editform").elements[3].value;
+            var height = document.getElementById("editform").elements[4].value;
+            var waist = document.getElementById("editform").elements[5].value;
+            var chest =  document.getElementById("editform").elements[6].value;
+            var data = {
+                name: name,
+                age: age,
+                address: address,
+                phone: phone,
+                height: height,
+                waist: waist,
+                chest: chest,
+            }
+            JSON.stringify(data);
+
+            $.ajax({
+                type: "POST",
+                url: "/user/update",
+                data: data,
+                success: function () {
+                    alert("successfully saved");
+                    $("#editform").hide();
+                    $("#frm1btn").hide();
+                }});
+                e.preventDefault();
+        }
+    </script>
+    <script>
+        function orderform(phone) {
+
+            var data = {phone: phone};
+
+            window.location.href='order?phone='+phone;
+        }
+    </script>
+    <script>
+        function orderfindfn() {
+            var data = {phone: phone};
+            JSON.stringify(data);
+            $.ajax({
+                type: "GET",
+                url: '/order'
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>USER FOund</h1>
+
+<form  id="editform" name="editform">
+    <br><input type="text" name="name" value="<%=name%>" >
+    <br><input type="text" name="phone" value="<%= phone %>" >
+    <br><input type="text" name="address" value="<%= address%>" >
+    <br><input type="text" name="age" value="<%= age %>" >
+    <br>
+    <input type="text" name="height" placeholder="addd height"><br>
+    <input type="text" name="waist" placeholder="add waist"><br>
+    <input type="text" name="chest" placeholder="add chest"><br>
+    <br>
+</form>
+<input type="submit" id="frm1btn" onclick="resform()">
+<br>
+<br>
+<button type="submit" id="btn" onclick="orderform(<%= phone %>)">create order</button>
+<button type="submit" id="findorderbtn" onclick="orderfindfn(<%= phone %>)">pending/previous order</button>
+</body>
+</html>

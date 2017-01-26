@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>home page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+          $(document).ready(function () {
+              $("#editform").hide();
+              $("btn").click(function (e) {
+                  $("#editform").show();
+
+                  $("#btn").hide();
+              });
+          });
+      </script>
+  </head>
+  <body>
+
+    <p>Welcome to HOMEPAGE</p>
+    <form method="get" action="/user">
+        find USER<input type="text" name="phone" id="phone">
+        <input type="submit">
+    </form>
+    <button id="btn">click to add new user</button>
+  <form method="post" action="/user" id="editform" name="editform">
+      <br><input type="text" name="name" placeholder="enter name" >
+      <br><input type="text" name="phone" placeholder="enter phone" >
+      <br><input type="text" name="address" placeholder="enter addresse" >
+      <br><input type="text" name="age" placeholder="enter age" >
+      <br><input type="submit">
+  </form>
+  </body>
+</html>
