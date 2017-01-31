@@ -13,6 +13,7 @@ var con = mysql.createConnection({
 });
 
 router.get("/",function (req,res,next) {
+    // order.ejs
     var phone = parseInt(req.query.phone);
     //console.log(phone);
     var startdate = "01/01/01";
@@ -26,7 +27,7 @@ router.get("/",function (req,res,next) {
         else
         {
             console.log(result.insertId);
-            res.render('order',{id: result.insertId,userid: phone,startdate: startdate});
+            res.render('order',{orderid: result.insertId,userid: phone,startdate: startdate});
         }
     });
 
