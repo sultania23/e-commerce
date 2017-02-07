@@ -3,8 +3,9 @@
     <title>order</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
-        function itr(){
-
+        function itr()
+        {
+            console.log("dfgsdfgd");
             var tb = document.getElementById("tbl");
             var i,data={};
             var id = tb.rows[1].cells[0].children[0].value;
@@ -14,32 +15,24 @@
                 var detail = tb.rows[i].cells[2].children[0].value;
                 var cost = tb.rows[i].cells[3].children[0].value;
                 var quantity = tb.rows[i].cells[4].children[0].value;
-                if(quantity>1)
+                if(quantity>0)
                 {
-                    data[i] = {orderid: id, itemname: itemname, details: details, cost: cost, quantity: quantity};
-                    cnt+=1;
+                    data[i] = {orderid: id,itemname: itemname,detail: detail,cost: cost,quantity: quantity}
+                    alert("data[o]");
+                    cnt = cnt + 1;
                 }
             }
-
-            if(cnt<1)
-            {
-                alert("select atleast one");
-            }
-            else
-            {
-
-
+            if(cnt<0)
+                alert("add one item");
+            else {
+                alert("gazdga");
                 JSON.stringify(data);
-                alert(data);
                 $.ajax({
                     type: 'POST',
                     url: '/order/submit',
                     data: data,
                     success: function () {
                         alert("success");
-                    },
-                    error: function (err) {
-                      alert(err);
                     }
                 });
             }

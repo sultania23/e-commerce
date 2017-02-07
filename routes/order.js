@@ -91,7 +91,6 @@ router.post('/submit',function (req,res) {
     console.log("yups...");
     var sql = "INSERT INTO orderdetail SET ?";
     var len = Object.keys(req.body).length;
-    console.log("sdgasdg");
     for(i=1;i<=len;i++)
     {
         console.log(req.body[i]);
