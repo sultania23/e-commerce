@@ -87,5 +87,31 @@ router.post('/singleorder',function (req,res) {
         }
     });
 });
+router.post('/submit',function (req,res) {
+    console.log("yups...");
+    var sql = "INSERT INTO orderdetail SET ?";
+    var len = Object.keys(req.body).length;
+    console.log("sdgasdg");
+    for(i=1;i<=len;i++)
+    {
+        console.log(req.body[i]);
+        var data = {
+            orderid: req.body[i].orderid,
+            itemname: req.body[i].itemname,
+            detail: req.body[i].details,
+            cost: req.body[i].cost,
+            quantity: req.body[i].quantity
+        };
+        con.query(sql,data,function (err,reslut) {
+           if(err)
+               console.log(err.message);
+           else
+           {
+               console.log("succeed");
+               //res.send(reslut);
+           }
+        });
+    }
 
+});
 module.exports = router;
