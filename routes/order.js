@@ -111,11 +111,11 @@ router.post('/submit',function (req,res) {
         });
     }
     var RESULT;
-    con.query('SELECT * FROM orderdetail WHERE orderid = ?',req.body[1].orderid,function (error,result) {
+    con.query('SELECT * FROM orderdetail WHERE orderid = ?',req.body[1].orderid,function (error,rows) {
         if(error)
             console.log(error);
         else
-            RESULT = result;
+            RESULT = rows;
     });
     res.json(RESULT);
 

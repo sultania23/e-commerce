@@ -5,7 +5,6 @@
     <script>
         function itr()
         {
-            console.log("dfgsdfgd");
             var tb = document.getElementById("tbl");
             var i,data={};
             var id = tb.rows[1].cells[0].children[0].value;
@@ -18,7 +17,7 @@
                 if(quantity>0)
                 {
                     data[i] = {orderid: id,itemname: itemname,detail: detail,cost: cost,quantity: quantity}
-                    alert("data[o]");
+                    //alert("data[o]");
                     cnt = cnt + 1;
                 }
             }
@@ -310,7 +309,25 @@
 
 <center><button type="submit" onclick="itr()" id="btn1">submit order</button></center>
 
+<table align="center"  border="2" cellpadding="10" id="tbl2">
+    <tr align="center">randeep ki dukan</tr>
+    <tr name="abc">
+        <td width="100">orderid</td>
+        <td width="100">itemname</td>
+        <td width="100">cost</td>
+        <td width="50">quantity</td>
+        <td width="100">total Cost</td>
+    </tr>
+    <tr name="abc">
+        <td width="100">orderid</td>
+        <td width="100">itemname</td>
+        <td width="100">cost</td>
+        <td width="50">quantity</td>
+        <td width="100">total Cost</td>
+    </tr>
 
+
+</table>
 </body>
 
 </html>
