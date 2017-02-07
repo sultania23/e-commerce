@@ -97,20 +97,27 @@ router.post('/submit',function (req,res) {
         var data = {
             orderid: req.body[i].orderid,
             itemname: req.body[i].itemname,
-            detail: req.body[i].details,
+            detail: req.body[i].detail,
             cost: req.body[i].cost,
             quantity: req.body[i].quantity
         };
-        con.query(sql,data,function (err,reslut) {
+        con.query(sql,data,function (err,reslt) {
            if(err)
                console.log(err.message);
            else
            {
                console.log("succeed");
-               //res.send(reslut);
            }
         });
     }
+    var RESULT;
+    con.query('SELECT * FROM orderdetail WHERE orderid = ?',req.body[1].orderid,function (error,result) {
+        if(error)
+            console.log(error);
+        else
+            RESULT = result;
+    });
+    res.json(RESULT);
 
 });
 module.exports = router;
