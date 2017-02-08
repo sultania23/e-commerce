@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require("mysql");
-
+var Q = require('q');
 var con = mysql.createConnection({
     host: "localhost",
     user: 'pawanyadav',
@@ -34,7 +34,6 @@ router.get("/",function (req,res,next) {
 });
 router.get('/orders',function (req,res,next) {
     var id = req.query.phone;
-
     con.query('SELECT * FROM orders WHERE userid = ?',id,function (err,rows) {
         if(err)
             console.log(err.message);
@@ -113,10 +112,24 @@ router.post('/submit',function (req,res) {
     res.send();
 
 });
-router.post('/bill',function (req,res) {
-
+router.post('/bill',function (req,res)
+{
     console.log("bill details render.");
     console.log(req.body.orderid);
+
+    var RESULT={},i=0;
+    con.query('SELECT * FROM orders WHERE orderid = ?',req.body.orderid,function (err,result) {
+       if(err)
+           console.log(err.message);
+       else
+       {
+           RESULT [i] = result;
+           i++;
+           console.log(RESULT[0][0].userid);
+       }
+    });
+   console.log("iuyytrwerthj");
+
     con.query('SELECT * FROM orderdetail WHERE orderid = ?',req.body.orderid,function (error,rows) {
         if(error)
             console.log(error);
