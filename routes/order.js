@@ -93,7 +93,6 @@ router.post('/submit',function (req,res) {
     var len = Object.keys(req.body).length;
     for(i=1;i<=len;i++)
     {
-        console.log(req.body[i]);
         var data = {
             orderid: req.body[i].orderid,
             itemname: req.body[i].itemname,
@@ -110,14 +109,25 @@ router.post('/submit',function (req,res) {
            }
         });
     }
-    var RESULT;
-    con.query('SELECT * FROM orderdetail WHERE orderid = ?',req.body[1].orderid,function (error,rows) {
+    console.log("outside fn.");
+    res.send();
+
+});
+router.post('/bill',function (req,res) {
+
+    console.log("bill details render.");
+    console.log(req.body.orderid);
+    con.query('SELECT * FROM orderdetail WHERE orderid = ?',req.body.orderid,function (error,rows) {
         if(error)
             console.log(error);
         else
-            RESULT = rows;
+        {
+            //console.log(req.body);
+            var data = rows;
+            console.log(data);
+            res.render('billpage',{data: data});
+            //
+        }
     });
-    res.json(RESULT);
-
 });
 module.exports = router;

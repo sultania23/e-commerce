@@ -3,6 +3,9 @@
     <title>order</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $("#billpage").hide();
+        });
         function itr()
         {
             var tb = document.getElementById("tbl");
@@ -34,6 +37,7 @@
                         alert("success");
                         $("#tbl").hide();
                         $("#btn1").hide();
+                        $("#billpage").show();
                     }
                 });
             }
@@ -308,26 +312,12 @@
 <br>
 
 <center><button type="submit" onclick="itr()" id="btn1">submit order</button></center>
-
-<table align="center"  border="2" cellpadding="10" id="tbl2">
-    <tr align="center">randeep ki dukan</tr>
-    <tr name="abc">
-        <td width="100">orderid</td>
-        <td width="100">itemname</td>
-        <td width="100">cost</td>
-        <td width="50">quantity</td>
-        <td width="100">total Cost</td>
-    </tr>
-    <tr name="abc">
-        <td width="100">orderid</td>
-        <td width="100">itemname</td>
-        <td width="100">cost</td>
-        <td width="50">quantity</td>
-        <td width="100">total Cost</td>
-    </tr>
+<form method="post" action="/order/bill" id="billpage">
+    <input type="hidden" name="orderid" value="<%= orderid %>">
+    <button type="submit">Go to bill</button>
+</form>
+</body>
 
 
 </table>
-</body>
-
 </html>

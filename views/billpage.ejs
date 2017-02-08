@@ -3,23 +3,26 @@
     <title>bill page</title>
 </head>
 <body>
+<center>BILL </center>
 <table align="center"  border="2" cellpadding="10" id="tbl2">
-    <tr align="center">randeep ki dukan</tr>
-    <tr name="abc">
-        <td width="100">orderid</td>
-        <td width="100">itemname</td>
-        <td width="100">cost</td>
-        <td width="50">quantity</td>
-        <td width="100">total Cost</td>
-    </tr>
-    <tr name="abc">
-        <td width="100">orderid</td>
-        <td width="100">itemname</td>
-        <td width="100">cost</td>
-        <td width="50">quantity</td>
-        <td width="100">total Cost</td>
-    </tr>
 
+    <tr name="abc">
+        <td width="100">orderid</td>
+        <td width="100">itemname</td>
+        <td width="100">cost</td>
+        <td width="50">quantity</td>
+        <td width="100">total Cost</td>
+    </tr>
+    <%= data.length %>
+    <% for(var i=0;i<data.length;i++) { %>
+    <tr name="abc">
+        <td width="100"><%= data[i].orderid %></td>
+        <td width="100"><%= data[i].itemname%></td>
+        <td width="100"><%= data[i].cost %></td>
+        <td width="50"><%= data[i].quantity %></td>
+        <td width="100"><%= data[i].quantity*data[i].cost %></td>
+    </tr>
+    <% } %>
 
 </table>
 </body>
